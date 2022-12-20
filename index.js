@@ -28,8 +28,9 @@ app.post("/cat", async (req, res) => {
 
 app.put("/cat/:id", async (req, res) => {
   const id = req.params.id;
+  const body = req.body;
 
-  const cat = await Cat.findByIdAndUpdate(id, { name: "test11" }, { new: true });
+  const cat = await Cat.findByIdAndUpdate(id, body);
   res.send(cat);
 });
 
