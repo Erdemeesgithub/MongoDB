@@ -15,13 +15,13 @@ connect();
 const Cat = mongoose.model("Cat", { name: String });
 
 app.get("/cat", async (req, res) => {
-  const data = await cat.find({});
+  const data = await Cat.find({});
   res.send(data);
 });
 
 app.post("/cat", async (req, res) => {
   const body = req.body;
-  const kitty = new Cat({ name: "erdem" });
+  const kitty = new Cat(body);
   await kitty.save();
   res.send("next!!");
 });
@@ -29,7 +29,7 @@ app.post("/cat", async (req, res) => {
 app.put("/cat/:id", async (req, res) => {
   const id = req.params.id;
 
-  const cat = await Cat.findByIdAndUpdate(id, { name: "test" }, { new: true });
+  const cat = await Cat.findByIdAndUpdate(id, { name: "test11" }, { new: true });
   res.send(cat);
 });
 
